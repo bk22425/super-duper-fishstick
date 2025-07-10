@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Repopulating List</title>
+  <style>
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      padding: 10px;
+      margin: 5px;
+      background-color: #f0f0f0;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Active Items</h2>
+  <ul id="active-list"></ul>
+
+  <script>
+    const wordBank = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry', 'Fig', 'Grape'];
+    const activeItems = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
+
+    const activeList = document.getElementById('active-list');
+
+    function renderActiveList() {
+      activeList.innerHTML = '';
+      activeItems.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        li.onclick = () => {
+          if (wordBank.length > 0) {
+            activeItems[index] = wordBank.shift();
+            renderActiveList();
+          }
+        };
+        activeList.appendChild(li);
+      });
+    }
+
+    renderActiveList();
+  </script>
+</body>
+</html>
